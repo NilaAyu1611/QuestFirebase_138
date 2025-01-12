@@ -5,12 +5,11 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.pam_firestore.MahasiswaApp
 import com.example.pam_firestore.model.Mahasiswa
 import com.example.pam_firestore.repository.RepositoryMhs
 import kotlinx.coroutines.launch
 
-class InsertViewMddel (
+class InsertViewModel (
     private val mhs: RepositoryMhs
 ): ViewModel() {
     // Menyimpan status terkini uiEvent
