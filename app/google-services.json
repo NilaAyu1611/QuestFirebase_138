@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "139017062566",
+    "project_id": "pamkita",
+    "storage_bucket": "pamkita.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:139017062566:android:f1bf8df9326918e6a08c67",
+        "android_client_info": {
+          "package_name": "com.example.pam_firestore"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAHsXX51_QyulMFHUZ6LmQzvqTMfDDkWPI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
