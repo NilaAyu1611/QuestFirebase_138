@@ -1,5 +1,8 @@
 package com.example.pam_firestore.ui.viewmodel
 
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import com.example.pam_firestore.MahasiswaApp
 import com.example.pam_firestore.model.Mahasiswa
@@ -8,6 +11,13 @@ import com.example.pam_firestore.repository.RepositoryMhs
 class InsertViewMddel (
     private val mhs: RepositoryMhs
 ): ViewModel() {
+    // Menyimpan status terkini uiEvent
+    var uiEvent: InsertUiState by mutableStateOf(InsertUiState())
+        private set
+
+    // mewakili sttutus formstate
+    var uiState: FormState by mutableStateOf(FormState.Idle)
+        private set
 
 
 
