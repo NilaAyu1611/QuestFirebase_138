@@ -71,6 +71,14 @@ class NetworkRepositoryMhs(
     }
 
     override suspend fun updateMhs(mahasiswa: Mahasiswa) {
-        TODO("Not yet implemented")
+        try {
+            firestore.collection("Mahasiswa")
+                .document(mahasiswa.nim)     // Menggunakan NIM sebagai ID dokumen
+                .set(mahasiswa)              // Memperbarui dokumen dengan data mahasiswa
+                .await()                     // Menunggu hingga operasi pembaruan selesai
+        }catch (e:Exception){
+            // exception jika terjadi kesalahan saat memperbarui data
+            throw Exception ("Gagal mengupdate data mahasiswa : ${e.message}")
+        }
     }
 }
