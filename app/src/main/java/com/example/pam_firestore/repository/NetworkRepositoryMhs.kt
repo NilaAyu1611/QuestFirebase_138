@@ -6,12 +6,21 @@ import com.google.firebase.firestore.Query
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
+import kotlinx.coroutines.tasks.await
 
+// Kelas ini bertanggung jawab untuk berinteraksi dengan Firestore untuk data Mahasiswa
 class NetworkRepositoryMhs(
     private val firestore: FirebaseFirestore
 ) : RepositoryMhs {
+
     override suspend fun insertMhs(mahasiswa: Mahasiswa) {
-        TODO("Not yet implemented")
+        try {
+            // Menambahkan objek mahasiswa ke koleksi "Mahasiswa" di Firestore
+            firestore.collection("Mahasiswa").add(mahasiswa).await()
+        } catch (e: Exception){
+            // exception jika terjadi kesalahan saat menambahkan data
+            throw Exception("Gagal menambahkan data mahasiswa : ${e.message}")
+        }
     }
 
     override fun getAllMahasiswa(): Flow<List<Mahasiswa>> = callbackFlow{      //dengan riltime tanpa melakukan event
