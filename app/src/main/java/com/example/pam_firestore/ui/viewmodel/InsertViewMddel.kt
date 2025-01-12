@@ -1,6 +1,7 @@
 package com.example.pam_firestore.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
+import com.example.pam_firestore.MahasiswaApp
 import com.example.pam_firestore.model.Mahasiswa
 import com.example.pam_firestore.repository.RepositoryMhs
 
@@ -26,3 +27,12 @@ data class MahasiswaEvent(
     val angkatan: String = "",
 )
 
+// Menyimpan input form ke dalam entry
+fun MahasiswaEvent.toMhsModel(): Mahasiswa = Mahasiswa(
+    nim = nim,
+    nama = nama,
+    jeniskelamin = jeniskelamin,
+    alamat = alamat,
+    kelas = kelas,
+    angkatan = angkatan
+)
