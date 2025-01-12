@@ -19,6 +19,15 @@ class InsertViewMddel (
     var uiState: FormState by mutableStateOf(FormState.Idle)
         private set
 
+    //Memperbarui state berdasarkan input user
+    fun updateState (mahasiswaEvent: MahasiswaEvent){
+        uiEvent = uiEvent.copy(
+            insertUiEvent = mahasiswaEvent,
+        )
+    }
+
+
+
 
 
 }
