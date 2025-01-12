@@ -13,6 +13,13 @@ class InsertViewMddel (
 
 }
 
+//cara yang terstruktur dan aman untuk mengelola berbagai status
+sealed class FormState {
+    object Idle: FormState()    // Menandakan bahwa form dalam keadaan tidak aktif
+    object Loading: FormState()
+    data class Success (val message: String) : FormState()
+    data class Error (val message: String) : FormState()
+}
 
 // menyimpan status event terkait dengan proses penyisipan data mahasiswa
 data class InsertUiState (
