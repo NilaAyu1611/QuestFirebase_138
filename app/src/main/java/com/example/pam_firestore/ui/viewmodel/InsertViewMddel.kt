@@ -26,6 +26,21 @@ class InsertViewMddel (
         )
     }
 
+    // validasi data input user
+    fun validateFields(): Boolean{
+        val event = uiEvent.insertUiEvent
+        val errorState = FormErrorState (
+            nim = if (event.nim.isNotEmpty()) null else "NIM tidak boleh kosong",
+            nama = if (event.nama.isNotEmpty()) null else "Nama tidak boleh kosong",
+            gender = if (event.gender.isNotEmpty()) null else "Gender tidak boleh kosong",
+            alamat = if (event.alamat.isNotEmpty()) null else "Alamat tidak boleh kosong",
+            kelas = if (event.kelas.isNotEmpty()) null else "Kelas tidak boleh kosong",
+            angkatan = if (event.angkatan.isNotEmpty()) null else "Angkatan tidak boleh kosong"
+
+        )
+        uiEvent = uiEvent.copy(isEntryValid = errorState)
+        return errorState.isValid()
+    }
 
 
 
