@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
 
 class HomeViewModel (
-    private val repoMhs: RepositoryMhs
+    private val mhs: RepositoryMhs
 ): ViewModel(){
     var mhsUIState:HomeUiState by mutableStateOf(HomeUiState.Loading)
         private set
@@ -23,7 +23,7 @@ class HomeViewModel (
 
     fun getMhs(){
         viewModelScope.launch {
-            repoMhs.getAllMahasiswa().onStart {
+            mhs.getAllMahasiswa().onStart {
                 mhsUIState = HomeUiState.Loading
             }
                 .catch {
@@ -37,6 +37,19 @@ class HomeViewModel (
                         HomeUiState.Success(it)
                     }
                 }
+        }
+    }
+
+
+    fun deleteMhs(mahasiswa: Mahasiswa){
+        viewModelScope.launch {
+            try {
+                // Mencoba untuk menghapus data mahasiswa
+                mhs.deleteMhs(mahasiswa)
+            }catch (e:Exception){
+                // exception jika terjadi kesalahan saat menghapus data
+                mhsUIState = HomeUiState.Error(e)
+            }
         }
     }
 }
