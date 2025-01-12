@@ -4,9 +4,11 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.pam_firestore.MahasiswaApp
 import com.example.pam_firestore.model.Mahasiswa
 import com.example.pam_firestore.repository.RepositoryMhs
+import kotlinx.coroutines.launch
 
 class InsertViewMddel (
     private val mhs: RepositoryMhs
@@ -42,9 +44,30 @@ class InsertViewMddel (
         return errorState.isValid()
     }
 
+    fun insertMhs() {
+        if (validateFields()) {     // Memvalidasi input pengguna
+            viewModelScope.launch {
+                uiState = FormState.Loading
+                try {
+                    // Menginsert data mahasiswa ke repository
+                    mhs.insertMhs(uiEvent.insertUiEvent.toMhsModel())
+                    uiState = FormState.Success("Data berhasil disimpan")
+                } catch (e: Exception) {
+                    uiState = FormState.Error ("Data gagal disimpan")
+                }
+            }
+        } else {
+            uiState = FormState.Error("Data tidak valid")
+        }
+    }
+    fun resetForm(){
+        uiEvent = InsertUiState()       // Mengatur ulang UI event ke state awal
+        uiState = FormState.Idle        // Mengatur ulang status UI ke Idle
+    }
 
-
-
+    fun resetSnackBarMessage() {
+        uiState = FormState.Idle
+    }
 }
 
 //cara yang terstruktur dan aman untuk mengelola berbagai status
