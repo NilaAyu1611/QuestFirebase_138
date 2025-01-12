@@ -11,6 +11,12 @@ object PenyediaViewModel {
     val Factory = viewModelFactory {
         initializer { HomeViewModel(MahasiswaApp().containerApp.repositoryMhs) }
 
+        initializer {
+            InsertViewMddel(
+                MahasiswaApp().containerApp.repositoryMhs
+            )
+        }
+
     }
 }
 
