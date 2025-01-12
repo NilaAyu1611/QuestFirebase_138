@@ -79,6 +79,7 @@ fun HomeView(
                 .padding(innerPadding)
                 .fillMaxSize(),
             onDetailClick = onDetailClick, onDeleteClick = {
+                viewModel.deleteMhs(it)         //memanggil fungsi delete dalam fungsi home view
 
             }
         )
