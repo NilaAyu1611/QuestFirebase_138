@@ -14,6 +14,11 @@ class InsertViewMddel (
 }
 
 
+// menyimpan status event terkait dengan proses penyisipan data mahasiswa
+data class InsertUiState (
+    val insertUiEvent: MahasiswaEvent = MahasiswaEvent(),       // meyimpan event terkait input mahasiswa
+    val isEntryValid: FormErrorState = FormErrorState(),        // menyimpan statyus validasi dari form input mahasiswa
+)
 
 data class FormErrorState(
     val nim: String? = null,
